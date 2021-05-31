@@ -1,0 +1,23 @@
+{
+    "name": "timer-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "body-parser": "1.19.0",
+      "compression": "1.7.4",
+      "cors": "2.8.5",
+      "express": "4.17.1",
+      "helmet": "4.6.0"
+    },
+    "devDependencies": {
+      "concurrently": "5.1.0",
+      "nodemon": "2.0.3",
+      "sqlite3": "5.0.2"
+    },
+    "scripts": {
+      "start-server": "nodemon index.js --watch server/*",
+      "serve-debug": "nodemon --inspect ./index.js",
+      "start": "node -r ./index.js"
+    }
+  }
+  
