@@ -1,0 +1,15 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+  margin: 2% 0% 2% 2%;
+}
+
+input {
+  width: 20%;
+  padding: 10px;
+}
+
+button {
+  width: 5%;
+  margin: 2% 0% 2% 2%;
+}
