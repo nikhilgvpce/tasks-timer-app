@@ -102,6 +102,7 @@ const DashBoard = (props) => {
     <div className="parent">
       <h3>{`Hello ${user}, Welcome to Dash Board...Below are your tasks`}</h3>
       <div>
+        <p>Enter task name using below input and press add button to add task </p>
         <input
           placeholder="task name"
           onChange={(e) => {

@@ -28,4 +28,7 @@ td {
 th {
   display: flex;
   margin-bottom:2%;
+} 
+p {
+ margin: 0;
 }
