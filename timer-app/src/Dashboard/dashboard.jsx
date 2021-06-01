@@ -46,9 +46,11 @@ const DashBoard = (props) => {
       const { result } = res.data;
       let _tasks = [];
       result.forEach((r) => {
-        const { taskName, time, user } = r;
-        const task = { taskName, time, user };
-        _tasks = _tasks.concat(task);
+        if (r.taskName) {
+          const { taskName, time, user } = r;
+          const task = { taskName, time, user };
+          _tasks = _tasks.concat(task);
+        }
       });
       // we set tasks after getting all the tasks
       setTasks(_tasks);
@@ -67,9 +69,11 @@ const DashBoard = (props) => {
       })
       .then((res) => {
         const { taskName, time, id } = res.data;
-        const task = { taskName, time, id };
-        const _tasks = [...tasks, task];
-        setTasks(_tasks);
+        if (taskName && time) {
+          const task = { taskName, time, id };
+          const _tasks = [...tasks, task];
+          setTasks(_tasks);
+        }
       });
   };
 
@@ -90,6 +94,7 @@ const DashBoard = (props) => {
     _minutes = parseInt(
       (Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000 * 60)) % 60
     );
+    if (_minutes === 0) _minutes = 1;
 
     // get seconds passed
     _seconds = parseInt(
@@ -99,7 +104,12 @@ const DashBoard = (props) => {
     // we render 0:0 for tasks which have lapsed
     // time > 25 minutes else we return minutes:seconds
     if (25 - _minutes < 0) return "0 : 0";
-    return 25 - _minutes + ":" + (60 - _seconds);
+    _minutes = 25 - _minutes;
+    _seconds = 60 - _seconds;
+    _minutes = _minutes < 10 ? "0" + _minutes : _minutes;
+    _seconds = _seconds < 10 ? "0" + _seconds : _seconds;
+    const time = _minutes + ":" + _seconds;
+    return time;
   };
 
   return (
@@ -131,14 +141,12 @@ const DashBoard = (props) => {
             <td style={{ color: "green" }}>Timer Status</td>
           </tr>
           {tasks.map((task, index) => {
-            if (task.taskName) {
-              return (
-                <tr key={index}>
-                  <td>{task.taskName}</td>
-                  <td>{getLapsedTime(task)}</td>
-                </tr>
-              );
-            }
+            return (
+              <tr key={index}>
+                <td>{task.taskName}</td>
+                <td>{getLapsedTime(task)}</td>
+              </tr>
+            );
           })}
         </tbody>
       </table>
