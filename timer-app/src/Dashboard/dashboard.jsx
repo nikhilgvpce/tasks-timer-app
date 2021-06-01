@@ -4,8 +4,8 @@ import { withRouter } from "react-router";
 import axios from "axios";
 
 /**
- * 
- * DashBoard component displays the welcome message for the 
+ *
+ * DashBoard component displays the welcome message for the
  * user at the top and also has provision to add new tasks
  * the table displayed in this component has all the tasks
  * that are added along with their lapsed time
@@ -74,10 +74,10 @@ const DashBoard = (props) => {
   };
 
   /**
-   * 
-   * @param {*} task 
+   *
+   * @param {*} task
    * @returns lapsed time in minutes : seconds format.
-   * Minutes and seconds: are the difference of current time and the time at which 
+   * Minutes and seconds: are the difference of current time and the time at which
    * task is created
    */
   const getLapsedTime = (task) => {
@@ -124,7 +124,7 @@ const DashBoard = (props) => {
       <table>
         <thead>
           <tr>
-            <th>Tasks Table</th>
+            <th>Tasks Table : </th>
           </tr>
         </thead>
         <tbody>

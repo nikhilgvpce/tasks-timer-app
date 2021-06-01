@@ -38,7 +38,7 @@ const User = (props) => {
         placeholder="username"
         onKeyDown={(e) => {
           const val = e.key;
-          const reg = new RegExp("[a-zA-Z0-9\s]+");
+          const reg = new RegExp("[a-zA-Z0-9]+");
           // allow only alpha numeric input
           if(!reg.test(val)) {
             e.preventDefault();
