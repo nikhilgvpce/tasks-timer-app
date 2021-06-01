@@ -81,30 +81,21 @@ const DashBoard = (props) => {
    * task is created
    */
   const getLapsedTime = (task) => {
-    let _time;
+    let _minutes;
     let _seconds;
     const timeAtWhichTaskCreated = task.time;
     const currTime = new Date();
 
     // get minutes passed
-    _time = Math.floor(
-      Math.floor(
-        Math.floor(currTime.getTime() - timeAtWhichTaskCreated) / 1000
-      ) / 60
-    );
+    _minutes = parseInt(Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000 * 60) % 60);
 
     // get seconds passed
-    _seconds = Math.floor(
-      Math.floor(
-        Math.floor(currTime.getTime() - timeAtWhichTaskCreated) / 1000
-      ) /
-        60 /
-        60
-    );
+    _seconds = parseInt(Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000) % 60); 
+
     // we render 0:0 for tasks which have lapsed
     // time > 25 minutes else we return minutes:seconds
-    if (25 - _time < 0) return "0 : 0";
-    return 25 - _time + ":" + (60 - _seconds);
+    if (25 - _minutes < 0) return "0 : 0";
+    return 25 - _minutes + ":" + (60 - _seconds);
   };
 
   return (
