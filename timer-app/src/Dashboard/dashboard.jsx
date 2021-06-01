@@ -87,10 +87,14 @@ const DashBoard = (props) => {
     const currTime = new Date();
 
     // get minutes passed
-    _minutes = parseInt(Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000 * 60) % 60);
+    _minutes = parseInt(
+      (Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000 * 60)) % 60
+    );
 
     // get seconds passed
-    _seconds = parseInt(Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / (1000) % 60); 
+    _seconds = parseInt(
+      (Math.abs(currTime.getTime() - timeAtWhichTaskCreated) / 1000) % 60
+    );
 
     // we render 0:0 for tasks which have lapsed
     // time > 25 minutes else we return minutes:seconds
@@ -102,7 +106,9 @@ const DashBoard = (props) => {
     <div className="parent">
       <h3>{`Hello ${user}, Welcome to Dash Board...Below are your tasks`}</h3>
       <div>
-        <p>Enter task name using below input and press add button to add task </p>
+        <p>
+          Enter task name using below input and press add button to add task{" "}
+        </p>
         <input
           placeholder="task name"
           onChange={(e) => {
@@ -125,12 +131,14 @@ const DashBoard = (props) => {
             <td style={{ color: "green" }}>Timer Status</td>
           </tr>
           {tasks.map((task, index) => {
-            return (
-              <tr key={index}>
-                <td>{task.taskName}</td>
-                <td>{getLapsedTime(task)}</td>
-              </tr>
-            );
+            if (task.taskName) {
+              return (
+                <tr key={index}>
+                  <td>{task.taskName}</td>
+                  <td>{getLapsedTime(task)}</td>
+                </tr>
+              );
+            }
           })}
         </tbody>
       </table>

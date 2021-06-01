@@ -13,22 +13,25 @@ const getAllTaks = (callBack) => {
         if (err) {
           console.error(err.message);
         }
-        result.push({
-          user: row.username,
-          taskName: row.taskname,
-          time: row.tasktime,
-        });
-      }, (err, count) => {
+        if (row.taskname !== '') {
+          result.push({
+            user: row.username,
+            taskName: row.taskname,
+            time: row.tasktime,
+          });
+        }
+      },
+      (err, count) => {
         callBack(result);
       }
     );
   });
-}
+};
 
-exports.allTasks = async (req, res) => {  
+exports.allTasks = async (req, res) => {
   getAllTaks((result) => {
-    res.json({result})
-  })
+    res.json({ result });
+  });
   return res;
 };
 
